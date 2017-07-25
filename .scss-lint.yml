@@ -1,0 +1,13 @@
+scss_files: 'src/app/styles/**/*.scss'
+
+linters:
+  IdSelector:
+    enabled: false
+  SelectorFormat:
+    enabled: false
+  SelectorDepth:
+    enabled: false
+  NestingDepth:
+    enabled: false
+  QualifyingElement:
+    enabled: false

@@ -1,0 +1,59 @@
+{
+  "name": "mobile-depot",
+  "productName": "Mobile Depot",
+  "version": "0.0.0",
+  "description": "Simple & powerful cross-platform EVE Online fitting tool",
+  "main": "serve.js",
+  "scripts": {
+    "start": "node serve.js",
+    "test": "grunt test",
+    "debug": "grunt compile && cd target && cordova run browser"
+  },
+  "homepage": "vevox.io",
+  "bugs": {
+    "url": "http://wiki.vevox.io/projects/mobile-depot",
+    "email": "matt@vevox.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VevoxDigital/MobileDepot.git"
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "private": true,
+  "author": {
+    "name": "Vevox Digital",
+    "url": "http://vevox.io"
+  },
+  "contributors": [
+    {
+      "name": "Matthew Struble",
+      "email": "matt@vevox.io",
+      "user": "CynicalBusiness"
+    }
+  ],
+  "license": "GPL-v3.0",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "velocity-animate": "^1.5.0"
+  },
+  "devDependencies": {
+    "babel-preset-babili": "^0.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-pug": "^1.0.0",
+    "grunt-move": "^0.1.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-shell": "^2.1.0"
+  }
+}
