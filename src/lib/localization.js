@@ -1,5 +1,7 @@
 'use strict'
 
+exports.localeCache = new Map()
+
 exports.activeLanguage = undefined
 
 /**
@@ -39,11 +41,14 @@ exports.parseLanguageFile = file => {
   *
   * Gets the language file contents from the given name
   * @param {string} name The name
-  * @return {Promise<string>} The data from the file, or any errors during fetch.
+  * @return {Promise<Map<string, string>>} The data from the file, or any errors during fetch.
   */
 exports.getLanguageFile = name => {
+  if (exports.localeCache.get(name)) return Promise.resolve(exports.localeCache.get(name))
   return new Promise((resolve, reject) => {
     $.get(`/asset/lang/${name}.lang`, data => {
+      data = exports.parseLanguageFile(data)
+      exports.localeCache.set(name, data)
       resolve(data)
     }).fail(err => {
       reject(err)
@@ -60,9 +65,8 @@ exports.getLanguageFile = name => {
   * @return {Promise<Map<string, string>>} The now active language
   */
 exports.setActiveLanguage = (lang = Util.app.config.localization[0]) => {
-  return exports.getLanguageFile(lang).then(data => {
-    exports.activeLanguage = exports.parseLanguageFile(data)
-  }).then(exports.updateDOMLocale)
+  exports.activeLanguage = lang
+  return exports.getLanguageFile(lang).then(() => exports.updateDOMLocale())
 }
 
 /**
@@ -72,14 +76,17 @@ exports.setActiveLanguage = (lang = Util.app.config.localization[0]) => {
   * @param {node} [node] The node to update.
   */
 exports.updateDOMLocale = node => {
-  if (!exports.activeLanguage) return
   if (node) {
     const key = node.attr('data-locale')
-
     if (typeof key !== 'string') return
-    node.text(exports.activeLanguage.get(key) || key)
+
+    return exports.getLanguageFile(node.attr('data-locale-lang') || exports.activeLanguage || Util.app.config.localization[0]).then(lang => {
+      return lang.get(key) ? lang : exports.getLanguageFile(Util.app.config.localization[0])
+    }).then(lang => {
+      node.text(lang.get(key) || key)
+    }).catch(console.error)
   } else {
-    $('[data-locale]:not([data-locale-force])').each(function () {
+    $('[data-locale]').each(function () {
       exports.updateDOMLocale($(this))
     })
   }

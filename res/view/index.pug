@@ -18,12 +18,20 @@ html
       
     // Scripts
     script(src='/node_modules/jquery/dist/jquery.min.js' type='text/javascript')
-    script(src='/index.js')
+    script(src='/node_modules/velocity-animate/velocity.min.js' type='text/javascript')
+    script(src='/index.js' type='text/javascript')
     block scripts
       
     // Styles
     link(href='style/core.css' rel='stylesheet' type='text/css')
     block styles
   body
-    h1(data-locale="app.title")
+    section#sectionLanguageSelect.section
+      div.section-container
+        each lang in app.config.localization
+          h2.language-prompt(data-locale='meta.prompt' data-locale-lang=lang)
+        hr
+        each lang in app.config.localization
+          button.language-button(data-locale='meta.name' data-locale-lang=lang)
+    h1(data-locale='app.title')
     

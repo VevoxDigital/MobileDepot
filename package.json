@@ -41,7 +41,8 @@
   ],
   "config": {
     "localization": [
-      "en_US"
+      "en",
+      "sl"
     ]
   },
   "license": "GPL-v3.0",

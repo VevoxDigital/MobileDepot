@@ -1,5 +1,5 @@
 @import 'lib/colors';
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu:700');
+// TODO include fonts (Open Sans, Ubuntu)
 
 * { box-sizing: border-box; }
 
@@ -17,3 +17,4 @@ body {
 }
 
 @import 'include/misc';
+@import 'include/language';
