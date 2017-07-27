@@ -91,7 +91,6 @@ exports = module.exports = grunt => {
         files: {
           'target/package.json': 'package.json',
           'target/www/package.json': 'package.json',
-          'target/www/import.js': 'src/platform/cordova.js',
           'target/config.xml': 'config.xml'
         }
       }

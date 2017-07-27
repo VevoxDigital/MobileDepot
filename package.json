@@ -20,7 +20,8 @@
   },
   "standard": {
     "globals": [
-      "$"
+      "$",
+      "Util"
     ]
   },
   "engines": {
@@ -38,6 +39,11 @@
       "user": "CynicalBusiness"
     }
   ],
+  "config": {
+    "localization": [
+      "en_US"
+    ]
+  },
   "license": "GPL-v3.0",
   "dependencies": {
     "jquery": "^3.2.1",

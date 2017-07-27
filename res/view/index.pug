@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html
   head
     // Content Metadata
     meta(charset='UTF-8')
@@ -14,13 +14,16 @@ html(lang='en')
     meta(name='description' content=app.desc)
     meta(name='author' content=app.author)
     meta(name='keywords' content=app.keywords ? app.keywords.join(',') : '')
+    title= `${app.productName} v${app.version}`
       
     // Scripts
-    script#platformInjectionTarget(src='import.js' type='text/javascript')
+    script(src='/node_modules/jquery/dist/jquery.min.js' type='text/javascript')
+    script(src='/index.js')
     block scripts
       
     // Styles
     link(href='style/core.css' rel='stylesheet' type='text/css')
     block styles
   body
+    h1(data-locale="app.title")
     
